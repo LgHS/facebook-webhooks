@@ -12,6 +12,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 
 class FacebookController extends Controller {
 	public function verifyUrl(Request $request) {
@@ -24,6 +25,19 @@ class FacebookController extends Controller {
 	}
 
 	public function webhook(Request $request) {
+
+		$json = json_decode($request->getContent());
+		/**
+		 * TODO :
+		 *  - validate request in mmiddleware (hmac)
+		 *  - retrieve data from payload (user_id etc.)
+		 *  - request to FB Graph API with user_id
+		 */
+		DB::insert('insert into 
+					users_data (`name`,`action`,action_text,profile_picture_url,`timestamp`) 
+					values (?,?,?,?,?)',
+					[$json->name, $json->action, $json->action_text, $json->profile_picture_url,$json->timestamp]
+		);
 		return new JsonResponse(json_decode($request->getContent(), true));
 	}
 }
