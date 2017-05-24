@@ -14,25 +14,25 @@ class ThermalController extends Controller {
 			[
 				'name' => 'Jonathan Berger',
 				'action' => 'page_like',
-				'action_text' => 'a aimé la page',
+				'action_text' => 'liked your page',
 				'profile_public_url' => 'https://scontent.xx.fbcdn.net/v/t1.0-1/p480x480/1926855_10152679111558989_489741242_n.jpg?oh=60eedad63dc03b6824b398c078d55e4e&oe=59A80419'
 			],
 			[
 				'name' => 'Dominique Nimous',
-				'action' => 'page_like',
-				'action_text' => 'a commenté un post',
+				'action' => 'post_comment',
+				'action_text' => 'commented a post',
 				'profile_public_url' => 'https://scontent.xx.fbcdn.net/v/t1.0-1/p480x480/1926855_10152679111558989_489741242_n.jpg?oh=60eedad63dc03b6824b398c078d55e4e&oe=59A80419'
 			],
 			[
 				'name' => 'Jonathan Berger',
-				'action' => 'page_like',
-				'action_text' => 'a partagé un post',
+				'action' => 'post_share',
+				'action_text' => 'shared a post',
 				'profile_public_url' => 'https://scontent.xx.fbcdn.net/v/t1.0-1/p480x480/1926855_10152679111558989_489741242_n.jpg?oh=60eedad63dc03b6824b398c078d55e4e&oe=59A80419'
 			],
 			[
-				'name' => 'Jonathan Berger',
+				'name' => 'Jerome K',
 				'action' => 'page_like',
-				'action_text' => 'a aimé la page',
+				'action_text' => 'liked your page',
 				'profile_public_url' => 'https://scontent.xx.fbcdn.net/v/t1.0-1/p480x480/1926855_10152679111558989_489741242_n.jpg?oh=60eedad63dc03b6824b398c078d55e4e&oe=59A80419'
 			],
 		]);
