@@ -7,3 +7,5 @@ $app->get('/', function () use ($app) {
 $app->get('webhook', 'FacebookController@verifyUrl');
 
 $app->post('webhook', 'FacebookController@webhook');
+
+$app->get('thermal', 'ThermalController@index');
