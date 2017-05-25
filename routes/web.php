@@ -9,3 +9,5 @@ $app->get('webhook', 'FacebookController@verifyUrl');
 $app->post('webhook', 'FacebookController@webhook');
 
 $app->get('thermal', 'ThermalController@index');
+
+$app->get('test', 'FacebookController@test');

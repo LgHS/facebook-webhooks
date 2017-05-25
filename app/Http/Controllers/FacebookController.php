@@ -9,6 +9,9 @@
 namespace App\Http\Controllers;
 
 
+use Facebook\Exceptions\FacebookResponseException;
+use Facebook\Exceptions\FacebookSDKException;
+use Facebook\Facebook;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -45,19 +48,34 @@ class FacebookController extends Controller {
 			if(!$userData)
 				return null;
 
-			$action = $change['field'] . '-' . $change['value']['item'] . '-' . $change['value']['verb'];
+			$action =  $change['value']['verb'] . '_' . $change['value']['item'];
 
 			DB::insert('insert into 
 					users_data (`name`,`action`,profile_picture_url,`timestamp`) 
 					values (?,?,?,?,?)',
-				[$userData->name, $action, $userData->profile_picture_url,$json->time]
+				[$userData['name'], $action, '',$json->time]
 			);
 		}
 
 		return new JsonResponse(json_decode($request->getContent(), true));
 	}
+	public function test(Request $req){
 
+
+	}
 	private function _getFbUserData($userId) {
+		$fb = app( Facebook::class );
+		try {
+			$response = $fb->get( '/' .$userId, env( 'APP_ACCESS_TOKEN' ) );
+		} catch ( FacebookResponseException $e ) {
+			echo 'Graph returned an error: ' . $e->getMessage();
+			exit;
+		} catch ( FacebookSDKException $e ) {
+			echo 'Facebook SDK returned an error: ' . $e->getMessage();
+			exit;
+		}
+		$user = $response->getGraphUser();
 
+		return $user;
 	}
 }

@@ -79,6 +79,7 @@ $app->singleton(
 */
 
 $app->register(SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider::class);
+$app->register(\App\Providers\FacebookServiceProvider::class);
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
