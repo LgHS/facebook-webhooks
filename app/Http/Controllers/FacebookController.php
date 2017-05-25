@@ -55,9 +55,9 @@ class FacebookController extends Controller {
 			$action =  $change['value']['verb'] . '_' . $change['value']['item'];
 
 			DB::insert('insert into 
-					users_data (`name`,`action`,`timestamp`) 
-					values (?,?,?)',
-				[$userData['name'], $action,$json['entry'][0]['time']]
+					users_data (`name`,`action`,`sender_id`, `timestamp`) 
+					values (?,?,?,?)',
+				[$userData['name'], $action, $change['value']['sender_id'], null]
 			);
 		}
 
