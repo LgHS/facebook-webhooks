@@ -39,14 +39,13 @@ class FacebookController extends Controller {
 		 *  - request to FB Graph API with user_id
 		 */
 
-		Log::info($request->getContent());
 
 		// {"changes":[{"field":"feed","value": {"item":"like","verb":"add","sender_id":"739017722955825"}}],"id":"1936253853323830","time":1495480999}
 
 		if(!$json)
 			return null;
 
-		foreach($json['changes'] as $change) {
+		foreach($json['changes']['entry'][0] as $change) {
 			$userData = $this->_getFbUserData($change['value']['sender_id']);
 
 			if(!$userData)
