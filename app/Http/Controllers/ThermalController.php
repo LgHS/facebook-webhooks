@@ -21,7 +21,7 @@ class ThermalController extends Controller {
 					'timestamp' => $d->timestamp,
 					'profile_public_url' => $d->profile_picture_url
 				];
-//			DB::delete('DELETE from users_data WHERE id = ?', [$d->id]);
+			DB::delete('DELETE from users_data WHERE id = ?', [$d->id]);
 		}
 
 		return new JsonResponse($json);
