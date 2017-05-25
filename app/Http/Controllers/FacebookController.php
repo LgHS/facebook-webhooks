@@ -29,7 +29,7 @@ class FacebookController extends Controller {
 
 	public function webhook(Request $request) {
 
-		$json = json_decode($request->getContent());
+		$json = json_decode($request->getContent(), true);
 		/**
 		 * TODO :
 		 *  - validate request in mmiddleware (hmac)
@@ -43,7 +43,7 @@ class FacebookController extends Controller {
 			return null;
 
 		foreach($json['changes'] as $change) {
-			$userData = $this->_getFbUserData($change['sender_id']);
+			$userData = $this->_getFbUserData($change['value']['sender_id']);
 
 			if(!$userData)
 				return null;
@@ -51,9 +51,9 @@ class FacebookController extends Controller {
 			$action =  $change['value']['verb'] . '_' . $change['value']['item'];
 
 			DB::insert('insert into 
-					users_data (`name`,`action`,profile_picture_url,`timestamp`) 
-					values (?,?,?,?,?)',
-				[$userData['name'], $action, '',$json->time]
+					users_data (`name`,`action`,`timestamp`) 
+					values (?,?,?)',
+				[$userData['name'], $action,$json['time']]
 			);
 		}
 
