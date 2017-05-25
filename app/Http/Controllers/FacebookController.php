@@ -16,6 +16,8 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Monolog\Logger;
 
 class FacebookController extends Controller {
 	public function verifyUrl(Request $request) {
@@ -36,6 +38,8 @@ class FacebookController extends Controller {
 		 *  - retrieve data from payload (user_id etc.)
 		 *  - request to FB Graph API with user_id
 		 */
+
+		Log::info($request->getContent());
 
 		// {"changes":[{"field":"feed","value": {"item":"like","verb":"add","sender_id":"739017722955825"}}],"id":"1936253853323830","time":1495480999}
 
