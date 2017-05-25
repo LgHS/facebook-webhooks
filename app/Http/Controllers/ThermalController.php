@@ -17,6 +17,7 @@ class ThermalController extends Controller {
 				[
 					'name' => $d->name,
 					'action' => $d->action,
+					'sender_id' => $d->sender_id,
 					'timestamp' => $d->timestamp,
 					'profile_public_url' => $d->profile_picture_url
 				];
