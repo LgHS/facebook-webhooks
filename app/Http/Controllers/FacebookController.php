@@ -45,19 +45,12 @@ class FacebookController extends Controller {
 			if(!$userData)
 				return null;
 
-			if($change['value']['item'] == 'like' && $change['value']['verb'] == 'add') {
-				$actionText = 'aime la page';
-				$action = 'page_like';
-			} else {
-				$actionText = $change['value']['item'] . ' / ' . $change['value']['verb'];
-				$action = 'unknown';
-			}
-
+			$action = $change['field'] . '-' . $change['value']['item'] . '-' . $change['value']['verb'];
 
 			DB::insert('insert into 
-					users_data (`name`,`action`,action_text,profile_picture_url,`timestamp`) 
+					users_data (`name`,`action`,profile_picture_url,`timestamp`) 
 					values (?,?,?,?,?)',
-				[$userData->name, $action, $actionText, $userData->profile_picture_url,$json->time]
+				[$userData->name, $action, $userData->profile_picture_url,$json->time]
 			);
 		}
 

@@ -11,7 +11,7 @@ class CreateUsersDataTable extends Migration
 			$table->increments( 'id' );
 			$table->string( 'name' );
 			$table->timestamp( 'timestamp' );
-			$table->string( 'action_text' );
+			$table->string( 'sender_id' );
 			$table->string( 'action' );
 			$table->string( 'profile_picture_url' );
 		} );
