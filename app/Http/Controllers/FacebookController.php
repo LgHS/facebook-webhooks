@@ -57,7 +57,7 @@ class FacebookController extends Controller {
 			DB::insert('insert into 
 					users_data (`name`,`action`,`timestamp`) 
 					values (?,?,?)',
-				[$userData['name'], $action,$json['time']]
+				[$userData['name'], $action,$json['entry'][0]['time']]
 			);
 		}
 
